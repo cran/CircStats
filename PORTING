@@ -1,6 +1,9 @@
 Library CircStats
 =================
 
+Version 0.1-7, 2003/11/18
+Fixed a bug in circ.plot and fixed a typo in the rao.spacing documentation.
+
 Version 0.1-6, 2003/04/17
  I.0, I.1 and I.p are aliases of the corresponding besselI functions
  All the functions use directly besselI. A1, dvm and dmixedvm use expon.scaled=TRUE. Fix a small bug in vm.bootstrap.ci function.

@@ -17,7 +17,7 @@ dwrpnorm(theta, mu, rho, sd=1, acc=1e-5, tol=acc)
 \item{sd}{different way of select \code{rho}, see details below.}
 \item{acc}{parameter defining the accuracy of the estimation of the
   density.  Terms are added to the infinite summation that defines the
-  density function until successive estimates are within ACC of each
+  density function until successive estimates are within \code{acc} of each
   other.}
 \item{tol}{the same as \code{acc}.}
 }

@@ -37,3 +37,4 @@ plot.edf(data2, axes=FALSE, xlab="", ylab="", lty=2)
 }
 
 \keyword{hplot}
+

@@ -192,8 +192,10 @@ circ.mean <- function(x) {
 ###############################################################
 ## Modified March 5, 2002
 ## Modified December 2, 2002
+## Modified November 18, 2003
 
 circ.plot <- function(x, main = "", pch = 16, stack = FALSE, bins = 0, cex = 1, dotsep = 40, shrink = 1) {
+ x <- x %% (2 * pi)
  if (require(MASS)) {
 	eqscplot(x=cos(seq(0, 2 * pi, length = 1000)), y=sin(seq(0, 2 * pi, length = 1000)), axes = FALSE, xlab = "", ylab = "", main = main, type = "l", xlim = shrink * c(-1, 1), ylim = shrink * c(-1, 1), ratio=1, tol=0.04)
 	lines(c(0, 0), c(0.9, 1))

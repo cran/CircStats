@@ -7,7 +7,7 @@ Performs Rao's Spacing Test of uniformity.
 }
 
 \usage{
-rao.spacing(x, alpha=0, rad=T)
+rao.spacing(x, alpha=0, rad=TRUE)
 }
 
 \arguments{
