@@ -1,7 +1,6 @@
 \name{circ.plot}
 \title{Circular Data Plot}
 \alias{circ.plot}
-\alias{eqscplot}
 
 \description{
 Creates a plot of circular data points on the current graphics device.  Data points are either plotted as points on the unit circle, or the range of the circle is divided into a specified number of bins, and points are stacked in the bins corresponding to the number of observations in each bin. 
@@ -26,7 +25,7 @@ circ.plot(x, main="", pch=16, stack=FALSE, bins=0, cex=1, dotsep=40, shrink=1)
 When there are many closely distributed observations, stacking is recommended.  Otherwise, much information can be lost due to overplotting of points.  When stacking the points, if there are many points in a particular bin, it may be necessary to shrink the plot of the circle so that all points fit.  This is controlled with the parameter shrink.  Generally the parameter dotsep does not need adjustment, however, when shrinking the plot, or for a very large number of observations, it may be helpful.
 }
 
-\note{eqscplot should not be called by the users.}
+\note{this function use function \code{\link{eqscplot}} from package MASS.}
 
 \seealso{
 \link{rose.diag}.

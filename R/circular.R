@@ -1,36 +1,44 @@
 ###############################################################
-#       CircStats function                                    #
-#       Original S: Ulric Lund                                #
+#       CircStats package                                     #
+###############################################################
+
+###############################################################
+#                                                             #
+#       Original Splus: Ulric Lund                            #
 #       E-mail: ulund@calpoly.edu                             #
+#                                                             #
+###############################################################
+
+###############################################################
+#                                                             #
 #       R port: Claudio Agostinelli  <claudio@unive.it>       #
-#       Date: March, 5, 2002                                  #
-#       Version: 0.1-3                                        #
+#       
+#       Date: December, 2, 2002                               #
+#       Version: 0.1-5                                        #
 #                                                             #
 ###############################################################
 
 A1 <- function(kappa) {
-	result <- I.1(kappa)/I.0(kappa)
-	result
+    result <- I.1(kappa)/I.0(kappa)
+	return(result)
 }
 
 ###############################################################
+## Modified December 2, 2002
 
 I.1 <- function(x) {
 	t <- x/3.75
-	if(x < 3.75) {
-		I1 <- x * (0.5 + 0.87890594 * t^2 + 0.51498869 * t^4 + 
+	ifelse (x < 3.75,
+            x * (0.5 + 0.87890594 * t^2 + 0.51498869 * t^4 + 
 			0.15084934 * t^6 + 0.02658733 * t^8 + 0.00301532 * t^
-			10 + 0.00032411 * t^12)
-	}
-	if(x >= 3.75) {
-		I1 <- x^(-0.5) * exp(x) * (0.39894228 - 0.03988024 * t^(-1) -
- 
+			10 + 0.00032411 * t^12),
+            
+            x^(-0.5) * exp(x) * (0.39894228 - 0.03988024 * t^(-1) -
 			0.00362018 * t^(-2) + 0.00163801 * t^(-3) - 
 			0.01031555 * t^(-4) + 0.02282967 * t^(-5) - 
 			0.02895312 * t^(-6) + 0.01787654 * t^(-7) - 
 			0.00420059 * t^(-8))
-	}
-	I1
+            )
 }
 
 ###############################################################
@@ -63,18 +71,18 @@ I.0 <- function(x) {
 }
 
 ###############################################################
+## Modified December 2, 2002
 
 A1inv <- function(x) {
-	if(0 <= x && x < 0.53) {
-		result <- 2 * x + x^3 + (5 * x^5)/6
-	}
-	if(0.53 <= x && x < 0.85) {
-		result <- -0.4 + 1.39 * x + 0.43/(1 - x)
-	}
-	if(x >= 0.85) {
-		result <- 1/(x^3 - 4 * x^2 + 3 * x)
-	}
-	result
+	ifelse (0 <= x & x < 0.53,
+		    2 * x + x^3 + (5 * x^5)/6,
+            
+            ifelse (x < 0.85,
+		            -0.4 + 1.39 * x + 0.43/(1 - x),
+                    
+		            1/(x^3 - 4 * x^2 + 3 * x)
+                   )
+           )
 }
 
 ###############################################################
@@ -168,10 +176,11 @@ circ.mean <- function(x) {
 
 ###############################################################
 ## Modified March 5, 2002
+## Modified December 2, 2002
 
 circ.plot <- function(x, main = "", pch = 16, stack = FALSE, bins = 0, cex = 1, dotsep = 40, shrink = 1) {
-        xx <- x
-	eqscplot(cos(seq(0, 2 * pi, length = 1000)), sin(seq(0, 2 * pi, length = 1000)), axes = FALSE, xlab = "", ylab = "", main = main, type = "l", xlim = shrink * c(-1, 1), ylim = shrink * c(-1, 1))
+ if (require(MASS)) {
+	eqscplot(x=cos(seq(0, 2 * pi, length = 1000)), y=sin(seq(0, 2 * pi, length = 1000)), axes = FALSE, xlab = "", ylab = "", main = main, type = "l", xlim = shrink * c(-1, 1), ylim = shrink * c(-1, 1), ratio=1, tol=0.04)
 	lines(c(0, 0), c(0.9, 1))
 	text(0.005, 0.85, "90", cex = 1.5)
 	lines(c(0, 0), c(-0.9, -1))
@@ -181,16 +190,16 @@ circ.plot <- function(x, main = "", pch = 16, stack = FALSE, bins = 0, cex = 1, 
 	lines(c(0.9, 1), c(0, 0))
 	text(0.82, 0, "0", cex = 1.5)
 	text(0, 0, "+", cex = 2)
-	n <- length(xx)
-	x <- cos(xx)
-	y <- sin(xx)
+	n <- length(x)
+	z <- cos(x)
+	y <- sin(x)
 	if(stack == FALSE)
-		points(x, y, cex = cex, pch = pch)
+		points(z, y, cex = cex, pch = pch)
 	else {
 		bins.count <- c(1:bins)
 		arc <- (2 * pi)/bins
 		for(i in 1:bins) {
-			bins.count[i] <- sum(xx <= i * arc & xx > (i - 1) * arc)
+			bins.count[i] <- sum(x <= i * arc & x > (i - 1) * arc)
 		}
 		mids <- seq(arc/2, 2 * pi - pi/bins, length = bins)
 		index <- cex/dotsep
@@ -198,40 +207,19 @@ circ.plot <- function(x, main = "", pch = 16, stack = FALSE, bins = 0, cex = 1, 
 			if(bins.count[i] != 0) {
 				for(j in 0:(bins.count[i] - 1)) {
 				  r <- 1 + j * index
-				  x <- r * cos(mids[i])
+				  z <- r * cos(mids[i])
 				  y <- r * sin(mids[i])
-				  points(x, y, cex = cex, pch = pch)
+				  points(z, y, cex = cex, pch = pch)
 				}
 			}
 		}
 	}
-}
 
-###############################################################
+ } else {
+    stop("To use this function you have to install the package MASS (VR)\n")
+ }
 
-eqscplot <- function(x, y, tol = 0.04, xlim = range(x), ylim = range(y), ...) {
-	if(is.matrix(x)) {
-		y <- x[, 2]
-		x <- x[, 1]
-	}
-	if(is.list(x)) {
-		y <- x$y
-		x <- x$x
-	}
-	oldpin <- par("pin")
-	midx <- 0.5 * (xlim[2] + xlim[1])
-	xlim <- midx + (1 + tol) * 0.5 * c(-1, 1) * (xlim[2] - xlim[1])
-	midy <- 0.5 * (ylim[2] + ylim[1])
-	ylim <- midy + (1 + tol) * 0.5 * c(-1, 1) * (ylim[2] - ylim[1])
-	xr <- oldpin[1]/(xlim[2] - xlim[1])
-	yr <- oldpin[2]/(ylim[2] - ylim[1])
-	if(yr > xr) {
-		ylim <- midy + (yr * c(-1, 1) * (ylim[2] - ylim[1]))/(2 * xr)
-	}
-	else {
-		xlim <- midx + (xr * c(-1, 1) * (xlim[2] - xlim[1]))/(2 * yr)
-	}
-	plot(x, y, xlim = xlim, ylim = ylim, xaxs = "i", yaxs = "i", ...)
+
 }
 
 ###############################################################
@@ -288,7 +276,7 @@ circ.reg <- function(alpha, theta, order = 1, level = 0.05) {
 	p1 <- 1 - pchisq(T1, 2)
 	p2 <- 1 - pchisq(T2, 2)
 	pvalues <- cbind(p1, p2)
-	circ.lm <- NULL
+	circ.lm <- list()
 	circ.lm$rho <- rho
 	circ.lm$fitted <- theta.fitted %% (2 * pi)
 	circ.lm$x <- cbind(alpha, theta)
@@ -359,8 +347,7 @@ dwrpcauchy <- function(theta, mu, rho) {
 
 dwrpnorm <- function(theta, mu, rho, acc = 1e-005) {
 	var <- -2 * log(rho)
-	term <- function(theta, mu, var, k)
-	{
+	term <- function(theta, mu, var, k)	{
 		1/sqrt(var * 2 * pi) * exp( - ((theta - mu + 2 * pi * k)^2)/(2 * var))
 	}
 	k <- 0
@@ -392,28 +379,28 @@ est.kappa <- function(x, bias = FALSE) {
 }
 
 ###############################################################
+## Modified December 2, 2002
 
 I.p <- function(p, x) {
 	I.before <- I.0(x)
 	I.curr <- I.1(x)
-	if(p == 0)
-		result <- I.before
-	if(p == 1)
-		result <- I.curr
-	if(p != 0 && p != 1) {
+	if (p == 0)
+		I.next <- I.before
+	if (p == 1)
+		I.next <- I.curr
+	if (p != 0 && p != 1) {
 		n <- 1
-		I.next <- 0
-		while(n < p && I.next >= 0) {
-			I.next <- I.before - (2 * n * I.curr)/x
-			I.before <- I.curr
-			I.curr <- I.next
-			n <- n + 1
+		I.next <- rep(0, length(x))
+		while(n < p) {
+			  I.next[I.next >=0] <- I.before[I.next >=0] - (2 * n * I.curr[I.next >=0])/x[I.next >=0]
+              I.next[I.next < 0] <- -1
+			  I.before <- I.curr
+			  I.curr <- I.next
+  			  n <- n + 1
 		}
-		if(I.next < 0)
-			result <- 0
-		else result <- I.next
+		I.next[I.next <0] <- 0
 	}
-	result
+	return(I.next)
 }
 
 ###############################################################
@@ -881,7 +868,7 @@ v0.test <- function(x, mu0 = 0, degree = FALSE) {
 vm.bootstrap.ci <- function(x, bias = FALSE, alpha = 0.05, reps = 1000, print = TRUE) {
 
     if (require(boot)) {
-	old.seed <- .Random.seed
+	    old.seed <- .Random.seed
         circ.mean.local <- function(x, i) {
             circ.mean(x[i])
         }
@@ -917,7 +904,7 @@ vm.bootstrap.ci <- function(x, bias = FALSE, alpha = 0.05, reps = 1000, print = 
 	result
 
         } else {
-             stop("To use this function you have to install the package bootstrap\n")
+             stop("To use this function you have to install the package bootstrap \n")
         }
 
 }

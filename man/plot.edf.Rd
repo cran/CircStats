@@ -7,7 +7,7 @@ Plots the empirical distribution function of a data set.
 }
 
 \usage{
-plot.edf(x, ...)
+\method{plot}{edf}(x, ...)
 }
 
 \arguments{

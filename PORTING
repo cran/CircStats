@@ -1,5 +1,10 @@
 Library CircStats
-===========
+=================
+
+Version 0.1-5, 2002/12/02
+
+Delete function eqscplot from the package, the function it is available from package MASS!
+The function I.1, I.p and A1inv should be vectorized. 
 
 Version 0.1, 2002/01/22 
 
