@@ -23,7 +23,7 @@ A1inv(0) = 0 and A1inv(1) = inf.  This function is useful in estimating the conc
 }
 
 \seealso{
-\link{est.kappa}, \link{A1}, \link{I.0}, \link{I.1}.
+\code{\link{est.kappa}}, \code{\link{A1}}, \code{\link{besselI}}.
 }
 
 \examples{

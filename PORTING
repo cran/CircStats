@@ -1,10 +1,15 @@
 Library CircStats
 =================
 
+Version 0.1-6, 2003/04/17
+ I.0, I.1 and I.p are aliases of the corresponding besselI functions
+ All the functions use directly besselI. A1, dvm and dmixedvm use expon.scaled=TRUE. Fix a small bug in vm.bootstrap.ci function.
+
+
 Version 0.1-5, 2002/12/02
 
-Delete function eqscplot from the package, the function it is available from package MASS!
-The function I.1, I.p and A1inv should be vectorized. 
+Delete function eqscplot from the package, the function is available from package MASS!
+The function I.1, I.p and A1inv are vectorized. 
 
 Version 0.1, 2002/01/22 
 

@@ -3,7 +3,7 @@
 \alias{I.0}
 
 \description{
-Returns an approximation of the zeroth order Bessel function of the first kind, evaluated at a specified real number. 
+An alias of besselI(x, nu=0, expon.scaled = FALSE) used for compatibility with old version package code.
 }
 
 \usage{
@@ -15,19 +15,15 @@ I.0(x)
 }
 
 \value{
-Returns an approximation of the zeroth order Bessel function of the first kind evaluated at a specified real number.
+Returns the zeroth order Bessel function of the first kind evaluated at a specified real number.
 }
 
 \details{
-The value returned is a polynomial approximation based on the algorithm of Abramowitz and Stegun (1970).  For a reference, see below.
-}
-
-\references{
-Abramowitz, M. and Stegun, I. (1970). Handbook of Mathematical Functions.  National Bureau of Standards, New York.
+The use of this function is deprecated. Please use \code{\link{besselI}}.
 }
 
 \seealso{
-\link{I.1}, \link{I.p}, \link{A1}.
+\code{\link{besselI}}.
 }
 
 \keyword{math}

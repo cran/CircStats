@@ -12,63 +12,78 @@
 ###############################################################
 #                                                             #
 #       R port: Claudio Agostinelli  <claudio@unive.it>       #
-#       
-#       Date: December, 2, 2002                               #
-#       Version: 0.1-5                                        #
+#                                                             #
+#       Date: April, 17, 2003                                 #
+#       Version: 0.1-7                                        #
 #                                                             #
 ###############################################################
 
+###############################################################
+## Modified December 23, 2002
+## Modified January 14, 2003
+
 A1 <- function(kappa) {
-    result <- I.1(kappa)/I.0(kappa)
+    result <- besselI(kappa, nu=1, expon.scaled = TRUE)/besselI(kappa, nu=0, expon.scaled = TRUE)
 	return(result)
 }
 
 ###############################################################
 ## Modified December 2, 2002
+## Modified December 23, 2002
+## An alias of the besselI(x, 1) function for compatibility with Splus version
 
 I.1 <- function(x) {
-	t <- x/3.75
-	ifelse (x < 3.75,
-            x * (0.5 + 0.87890594 * t^2 + 0.51498869 * t^4 + 
-			0.15084934 * t^6 + 0.02658733 * t^8 + 0.00301532 * t^
-			10 + 0.00032411 * t^12),
-            
-            x^(-0.5) * exp(x) * (0.39894228 - 0.03988024 * t^(-1) -
-			0.00362018 * t^(-2) + 0.00163801 * t^(-3) - 
-			0.01031555 * t^(-4) + 0.02282967 * t^(-5) - 
-			0.02895312 * t^(-6) + 0.01787654 * t^(-7) - 
-			0.00420059 * t^(-8))
-            )
+    besselI(x=x, nu=1, expon.scaled = FALSE)
 }
+
+#I.1 <- function(x) {
+#	t <- x/3.75
+#	ifelse (x < 3.75,
+#            x * (0.5 + 0.87890594 * t^2 + 0.51498869 * t^4 + 
+#			0.15084934 * t^6 + 0.02658733 * t^8 + 0.00301532 * t^
+#			10 + 0.00032411 * t^12),
+#            
+#            x^(-0.5) * exp(x) * (0.39894228 - 0.03988024 * t^(-1) -
+#			0.00362018 * t^(-2) + 0.00163801 * t^(-3) - 
+#			0.01031555 * t^(-4) + 0.02282967 * t^(-5) - 
+#			0.02895312 * t^(-6) + 0.01787654 * t^(-7) - 
+#			0.00420059 * t^(-8))
+#            )
+#}
 
 ###############################################################
+## Modified December 23, 2002
+## An alias of the besselI(x, 0) function for compatibility with Splus version
 
 I.0 <- function(x) {
-	p1 <- 1
-	p2 <- 3.5156229
-	p3 <- 3.0899424
-	p4 <- 1.2067492
-	p5 <- 0.2659732
-	p6 <- 0.360768/10
-	p7 <- 0.45813/100
-	q1 <- 0.39894228
-	q2 <- 0.1328592/10
-	q3 <- 0.225319/100
-	q4 <- -0.157565/100
-	q5 <- 0.916281/100
-	q6 <- -0.2057706/10
-	q7 <- 0.2635537/10
-	q8 <- -0.1647633/10
-	q9 <- 0.392377/100
-	y <- (x/3.75)^2
-	ax <- abs(x)
-	z <- 3.75/ax
-	ifelse(abs(x) < 3.75, p1 + y * (p2 + y * (p3 + y * (p4 + y * (p5 + y 
-*
-		(p6 + y * p7))))), (exp(ax)/sqrt(ax)) * (q1 + z * (q2 + z * (
-		q3 + z * (q4 + z * (q5 + z * (q6 + z * (q7 + z * (q8 + z * 
-		q9)))))))))
+    besselI(x=x, nu=0, expon.scaled = FALSE)
 }
+
+#I.0 <- function(x) {
+#	p1 <- 1
+#	p2 <- 3.5156229
+#	p3 <- 3.0899424
+#	p4 <- 1.2067492
+#	p5 <- 0.2659732
+#	p6 <- 0.360768/10
+#	p7 <- 0.45813/100
+#	q1 <- 0.39894228
+#	q2 <- 0.1328592/10
+#	q3 <- 0.225319/100
+#	q4 <- -0.157565/100
+#	q5 <- 0.916281/100
+#	q6 <- -0.2057706/10
+#	q7 <- 0.2635537/10
+#	q8 <- -0.1647633/10
+#	q9 <- 0.392377/100
+#	y <- (x/3.75)^2
+#	ax <- abs(x)
+#	z <- 3.75/ax
+#	ifelse(abs(x) < 3.75, p1 + y * (p2 + y * (p3 + y * (p4 + y * (p5 + y 
+#       * (p6 + y * p7))))), (exp(ax)/sqrt(ax)) * (q1 + z * (q2 + z * (
+#		q3 + z * (q4 + z * (q5 + z * (q6 + z * (q7 + z * (q8 + z * 
+#		q9)))))))))
+#}
 
 ###############################################################
 ## Modified December 2, 2002
@@ -90,8 +105,8 @@ A1inv <- function(x) {
 change.pt <- function(x) {
 	phi <- function(x) {
 		arg <- A1inv(x)
-		if(I.0(arg) != Inf)
-			result <- x * A1inv(x) - log(I.0(arg))
+		if(besselI(x=arg, nu=0, expon.scaled = FALSE) != Inf)
+			result <- x * A1inv(x) - log(besselI(x=arg, nu=0, expon.scaled = FALSE))
 		else result <- x * A1inv(x) - (arg + log(1/sqrt(2 * pi * arg) * (1 + 1/(8 * arg) + 9/(128 * arg^2) + 225/(1024 * arg^3))))
 		result
 	}
@@ -320,9 +335,10 @@ deg <- function(radian) {
 }
 
 ##############################################################
+# Modified January 14, 2003
 
 dmixedvm <- function(theta, mu1, mu2, kappa1, kappa2, p) {
-	p/(2 * pi * I.0(kappa1)) * exp(kappa1 * cos(theta - mu1)) + (1 - p)/(2 * pi * I.0(kappa2)) * exp(kappa2 * cos(theta - mu2))
+	p/(2 * pi * besselI(x=kappa1, nu=0, expon.scaled = TRUE)) * (exp(cos(theta - mu1) - 1))^kappa1 + (1 - p)/(2 * pi * besselI(x=kappa2, nu=0, expon.scaled = TRUE)) * (exp(cos(theta - mu2) - 1))^kappa2
 }
 
 ###############################################################
@@ -332,9 +348,11 @@ dtri <- function(theta, r) {
 }
 
 ###############################################################
+# Modified January 14, 2003
 
-dvm <- function(theta, mu, kappa) {
-	1/(2 * pi * I.0(kappa)) * exp(kappa * cos(theta - mu))
+dvm <- function (theta, mu, kappa) {
+    1/(2 * pi * besselI(x = kappa, nu = 0, expon.scaled = TRUE)) * 
+        (exp(cos(theta - mu) -1))^kappa
 }
 
 ###############################################################
@@ -344,8 +362,18 @@ dwrpcauchy <- function(theta, mu, rho) {
 }
 
 ###############################################################
+# Modified December, 31 2002 
+# aggiunto il parametro tol che sostituira' acc
+# aggiunto sd per poter specificare rho in forma diversa
+# controllo sul valore di rho
+# rho deve stare nell'intervallo [0,1]
 
-dwrpnorm <- function(theta, mu, rho, acc = 1e-005) {
+dwrpnorm <- function(theta, mu, rho, sd=1, acc=1e-5, tol=acc) {
+        if (missing(rho)) {
+            rho <- exp(-sd^2/2)
+        }
+        if (rho < 0 | rho > 1)
+            stop("rho must be between 0 and 1")
 	var <- -2 * log(rho)
 	term <- function(theta, mu, var, k)	{
 		1/sqrt(var * 2 * pi) * exp( - ((theta - mu + 2 * pi * k)^2)/(2 * var))
@@ -353,7 +381,7 @@ dwrpnorm <- function(theta, mu, rho, acc = 1e-005) {
 	k <- 0
 	Next <- term(theta, mu, var, k)
 	delta <- 1
-	while(delta > acc) {
+	while(delta > tol) {
 		k <- k + 1
 		Last <- Next
 		Next <- Last + term(theta, mu, var, k) + term(theta, mu, var, -k)
@@ -380,28 +408,35 @@ est.kappa <- function(x, bias = FALSE) {
 
 ###############################################################
 ## Modified December 2, 2002
+## Modified December 23, 2002
+## An alias of the besselI(x, p) function for compatibility with Splus version
 
 I.p <- function(p, x) {
-	I.before <- I.0(x)
-	I.curr <- I.1(x)
-	if (p == 0)
-		I.next <- I.before
-	if (p == 1)
-		I.next <- I.curr
-	if (p != 0 && p != 1) {
-		n <- 1
-		I.next <- rep(0, length(x))
-		while(n < p) {
-			  I.next[I.next >=0] <- I.before[I.next >=0] - (2 * n * I.curr[I.next >=0])/x[I.next >=0]
-              I.next[I.next < 0] <- -1
-			  I.before <- I.curr
-			  I.curr <- I.next
-  			  n <- n + 1
-		}
-		I.next[I.next <0] <- 0
-	}
-	return(I.next)
+    besselI(x=x, nu=p, expon.scaled = FALSE)
 }
+
+#I.p <- function(p, x) {
+#	I.before <- I.0(x)
+#	I.curr <- I.1(x)
+#	if (p == 0)
+#		I.next <- I.before
+#	if (p == 1)
+#		I.next <- I.curr
+#	if (p != 0 && p != 1) {
+#		n <- 1
+#		I.next <- rep(0, length(x))
+#		while(n < p) {
+#			  I.next[I.next >=0] <- I.before[I.next >=0] - (2 * n * I.curr[I.next >=0])/x[I.next >=0]
+#              I.next[I.next < 0] <- -1
+#			  I.before <- I.curr
+#			  I.curr <- I.next
+#  			  n <- n + 1
+#		}
+#		I.next[I.next <0] <- 0
+#	}
+#	return(I.next)
+#}
+
 
 ###############################################################
 
@@ -476,13 +511,13 @@ pvm <- function(theta, mu, kappa, acc = 1e-020) {
 		p <- 1
 		sum <- 0
 		while(flag == "true") {
-			term <- (I.p(p, kappa) * sin(p * theta))/p
+			term <- (besselI(x=kappa, nu=p, expon.scaled = FALSE) * sin(p * theta))/p
 			sum <- sum + term
 			p <- p + 1
 			if(abs(term) < acc)
 				flag <- "false"
 		}
-		theta/(2 * pi) + sum/(pi * I.0(kappa))
+		theta/(2 * pi) + sum/(pi * besselI(x=kappa, nu=0, expon.scaled = FALSE))
 	}
 	if(mu == 0) {
 		result <- pvm.mu0(theta, kappa, acc)
@@ -813,11 +848,19 @@ rwrpcauchy <- function(n, location = 0, rho = exp(-1)) {
 }
 
 ###############################################################
+# Modified December 31, 2002
+# aggiunto parametro sd
+# controllo sul valore di rho
 
-rwrpnorm <- function(n, mu, rho) {
-	if(rho == 0)
+rwrpnorm <- function(n, mu, rho, sd=1) {
+        if (missing(rho)) {
+            rho <- exp(-sd^2/2)
+        }
+        if (rho < 0 | rho > 1)
+            stop("rho must be between 0 and 1")        
+	if (rho == 0)
 		result <- runif(n, 0, 2 * pi)
-	else if(rho == 1)
+	else if (rho == 1)
 		result <- rep(mu, n)
 	else {
 		sd <- sqrt(-2 * log(rho))
@@ -864,11 +907,11 @@ v0.test <- function(x, mu0 = 0, degree = FALSE) {
 }
 
 ###############################################################
+# Modified April 17, 2003
 
 vm.bootstrap.ci <- function(x, bias = FALSE, alpha = 0.05, reps = 1000, print = TRUE) {
 
     if (require(boot)) {
-	    old.seed <- .Random.seed
         circ.mean.local <- function(x, i) {
             circ.mean(x[i])
         }

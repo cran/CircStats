@@ -3,7 +3,7 @@
 \alias{I.p}
 
 \description{
-Returns an approximation of the p-th order Bessel function of the first kind, evaluated at a specified real number. 
+An alias of besselI(x, nu=p, expon.scaled = FALSE) used for compatibility with old version package code.
 }
 
 \usage{
@@ -16,19 +16,16 @@ I.p(p, x)
 }
 
 \value{
-Returns an approximation of the p-th order Bessel function of the first kind, evaluated at a specified real number.
+Returns the p-th order Bessel function of the first kind, evaluated at a specified real number.
 }
 
 \details{
-Computation of the p-th order Bessel function of the first kind is done via the recurrence relationship with the Bessel functions of orders p-1 and p-2, using the polynomial approximations for orders 0 and 1.
+The use of this function is deprecated. Please use \code{\link{besselI}}.
 }
 
-\references{
-Abramowitz, M. and Stegun, I. (1970). Handbook of Mathematical Functions.  National Bureau of Standards, New York.
-}
 
 \seealso{
-\link{I.0}, \link{I.1}.
+\code{\link{besselI}}.
 }
 
 \keyword{math}

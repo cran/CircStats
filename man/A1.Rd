@@ -17,15 +17,11 @@ If I1(kappa) is the first order Bessel function and I0(kappa) is the zeroth orde
 }
 
 \details{
-Polynomial approximations for the Bessel functions are used, according to the algorithm given by Abramowitz and Stegun (1970).  See below for the reference.
-}
-
-\references{
-Abramowitz, M. and Stegun, I. (1970).  Handbook of Mathematical Functions.  National Bureau of Standards, New York.
+The function use \code{\link{besselI}}.
 }
 
 \seealso{
-\link{A1inv}, \link{I.0}, \link{I.1}.
+ \code{\link{besselI}}, \code{\link{A1inv}}.
 }
 
 
