@@ -22,7 +22,7 @@ NULL
 }
 
 \note{
-Watson's two-sample test of homogeneity is performed, and the results are printed to the screen.  If alpha is specified and non-zero, the test statistic is printed along with the critical value and decision.  If alpha is omitted, the test statistic is printed and a range for the p-value of the test is given.  If plot=T, an overlayed plot of both empirical distribution functions will be sent to the current graphics device.
+Watson's two-sample test of homogeneity is performed, and the results are printed to the screen.  If alpha is specified and non-zero, the test statistic is printed along with the critical value and decision.  If alpha is omitted, the test statistic is printed and a range for the p-value of the test is given.  If plot=TRUE, an overlayed plot of both empirical distribution functions will be sent to the current graphics device.
 }
 
 \details{
@@ -38,7 +38,7 @@ Jammalamadaka, S. Rao and SenGupta, A. (2001). Topics in Circular Statistics, Se
 # simulated data sets.
 data1 <- rvm(20, 0, 3)
 data2 <- rvm(20, pi, 2)
-watson.two(data1, data2, alpha=0.05, plot=T)
+watson.two(data1, data2, alpha=0.05, plot=TRUE)
 watson.two(data1, data2)
 }
 

@@ -17,7 +17,7 @@ circ.cor(alpha, beta, test=FALSE)
 }
 
 \value{
-Returns a data frame with variables r, a circular version of the Pearson's product moment correlation, test.stat and p.value, the test statistic and p-value respectively, for testing significance of the correlation coefficient. test.stat and p.value are by default not produced, but are given when test=T is specified in the function call.
+Returns a data frame with variables r, a circular version of the Pearson's product moment correlation, test.stat and p.value, the test statistic and p-value respectively, for testing significance of the correlation coefficient. test.stat and p.value are by default not produced, but are given when test=TRUE is specified in the function call.
 }
 
 \details{
@@ -34,7 +34,7 @@ Jammalamadaka, S. and Sarma, Y. (1988).  A correlation coefficient for angular v
 # Generate two circular data sets, and compute their correlation.
 data1 <- rvm(50, 0, 3)
 data2 <- data1 + pi + rvm(50, 0, 10)
-circ.cor(data1, data2, test=T)
+circ.cor(data1, data2, test=TRUE)
 }
 
 \keyword{univar}

@@ -3,8 +3,8 @@
 #       Original S: Ulric Lund                                #
 #       E-mail: ulund@calpoly.edu                             #
 #       R port: Claudio Agostinelli  <claudio@unive.it>       #
-#       Date: January, 22, 2002                               #
-#       Version: 0.1                                          #
+#       Date: March, 5, 2002                                  #
+#       Version: 0.1-3                                        #
 #                                                             #
 ###############################################################
 
@@ -167,8 +167,10 @@ circ.mean <- function(x) {
 }
 
 ###############################################################
+## Modified March 5, 2002
 
 circ.plot <- function(x, main = "", pch = 16, stack = FALSE, bins = 0, cex = 1, dotsep = 40, shrink = 1) {
+        xx <- x
 	eqscplot(cos(seq(0, 2 * pi, length = 1000)), sin(seq(0, 2 * pi, length = 1000)), axes = FALSE, xlab = "", ylab = "", main = main, type = "l", xlim = shrink * c(-1, 1), ylim = shrink * c(-1, 1))
 	lines(c(0, 0), c(0.9, 1))
 	text(0.005, 0.85, "90", cex = 1.5)
@@ -179,16 +181,16 @@ circ.plot <- function(x, main = "", pch = 16, stack = FALSE, bins = 0, cex = 1, 
 	lines(c(0.9, 1), c(0, 0))
 	text(0.82, 0, "0", cex = 1.5)
 	text(0, 0, "+", cex = 2)
-	n <- length(x)
-	x <- cos(x)
-	y <- sin(x)
+	n <- length(xx)
+	x <- cos(xx)
+	y <- sin(xx)
 	if(stack == FALSE)
 		points(x, y, cex = cex, pch = pch)
 	else {
 		bins.count <- c(1:bins)
 		arc <- (2 * pi)/bins
 		for(i in 1:bins) {
-			bins.count[i] <- sum(x <= i * arc & x > (i - 1) * arc)
+			bins.count[i] <- sum(xx <= i * arc & xx > (i - 1) * arc)
 		}
 		mids <- seq(arc/2, 2 * pi - pi/bins, length = bins)
 		index <- cex/dotsep
@@ -707,6 +709,7 @@ rmixedvm <- function(n, mu1, mu2, kappa1, kappa2, p) {
 }
 
 ###############################################################
+## Modified March 5, 2002
 
 rose.diag <- function(x, bins, main = "", prop = 1, pts = FALSE, cex = 1, pch = 16, dotsep = 40, shrink = 1) {
 	x <- x %% (2 * pi)
@@ -736,7 +739,7 @@ rose.diag <- function(x, bins, main = "", prop = 1, pts = FALSE, cex = 1, pch = 
 			lines(c(0, radius[i] * cos(sector[i])), c(0, radius[i] * sin(sector[i])))
 			lines(c(0, radius[i] * cos(sector[i] + (2 * pi)/bins)), c(0, radius[i] * sin(sector[i] + (2 * pi)/bins)))
 			lines(c(radius[i] * cos(sector[i]), radius[i] * cos(sector[i] + (2 * pi)/bins)), c(radius[i] * sin(sector[i]), radius[i] * sin(sector[i] + (2 * pi)/bins)))
-			if(pts == T) {
+			if(pts == TRUE) {
 				for(j in 0:(freq[i] - 1)) {
 				  r <- 1 + j * index
 				  x <- r * cos(mids[i])

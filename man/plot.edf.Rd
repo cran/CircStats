@@ -33,7 +33,7 @@ data1 <- rvm(10, 0, 3)
 data2 <- rvm(10, 0, 1)
 plot.edf(data1, xlab="Data", ylab="EDF", main="Plots of Two EDF's")
 par(new=TRUE)
-plot.edf(data2, axes=F, xlab="", ylab="", lty=2)
+plot.edf(data2, axes=FALSE, xlab="", ylab="", lty=2)
 }
 
 \keyword{hplot}
