@@ -1,6 +1,9 @@
 Library CircStats
 =================
 
+Version 0.1-8, 2003/11/18
+Fixed a problem in rose.diag
+
 Version 0.1-7, 2003/11/18
 Fixed a bug in circ.plot and fixed a typo in the rao.spacing documentation.
 
@@ -8,14 +11,11 @@ Version 0.1-6, 2003/04/17
  I.0, I.1 and I.p are aliases of the corresponding besselI functions
  All the functions use directly besselI. A1, dvm and dmixedvm use expon.scaled=TRUE. Fix a small bug in vm.bootstrap.ci function.
 
-
 Version 0.1-5, 2002/12/02
-
 Delete function eqscplot from the package, the function is available from package MASS!
 The function I.1, I.p and A1inv are vectorized. 
 
 Version 0.1, 2002/01/22 
-
 Changes to the original package:
 1. Re-organisation of the files.
 2. Conversion of the docs.
@@ -29,5 +29,5 @@ Claudio Agostinelli
 Department of Statistics
 University of Venice
 Italy
-http://linaria.dst.unive.it/~claudio
+http://www.dst.unive.it/~claudio
 <claudio@unive.it>

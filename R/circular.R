@@ -734,10 +734,12 @@ rmixedvm <- function(n, mu1, mu2, kappa1, kappa2, p) {
 
 ###############################################################
 ## Modified March 5, 2002
+## Modified December, 23, 2003
 
 rose.diag <- function(x, bins, main = "", prop = 1, pts = FALSE, cex = 1, pch = 16, dotsep = 40, shrink = 1) {
 	x <- x %% (2 * pi)
-	eqscplot(cos(seq(0, 2 * pi, length = 1000)), sin(seq(0, 2 * pi, length = 1000)), axes = FALSE, xlab = "", ylab = "", main = main, type = "l", xlim = shrink * c(-1, 1), ylim = shrink* c(-1, 1))
+    if (require(MASS)) {
+	   eqscplot(cos(seq(0, 2 * pi, length = 1000)), sin(seq(0, 2 * pi, length = 1000)), axes = FALSE, xlab = "", ylab = "", main = main, type = "l", xlim = shrink * c(-1, 1), ylim = shrink* c(-1, 1))
 	lines(c(0, 0), c(0.9, 1))
 	text(0.005, 0.85, "90", cex = 1.5)
 	lines(c(0, 0), c(-0.9, -1))
@@ -773,6 +775,10 @@ rose.diag <- function(x, bins, main = "", prop = 1, pts = FALSE, cex = 1, pch = 
 			}
 		}
 	}
+
+ } else {
+    stop("To use this function you have to install the package MASS (VR)\n")
+ }
 }
 
 ###############################################################
