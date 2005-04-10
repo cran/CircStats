@@ -29,7 +29,7 @@ If dist = 'vm', estimates of the population parameters are used to evaluate the 
 \references{
 Jammalamadaka, S. Rao and SenGupta, A. (2001). Topics in Circular Statistics, Section 7.2, World Scientific Press, Singapore.
 
-Stephens, M. (1970).  Use of the Kolmogorov-Smirnov, Cramer-von Mises and related statistics without extensive tables.  Journal of the Royal Statistical Society, B32, 115–122.
+Stephens, M. (1970).  Use of the Kolmogorov-Smirnov, Cramer-von Mises and related statistics without extensive tables.  Journal of the Royal Statistical Society, B32, 115-122.
 }
 
 \seealso{

@@ -26,7 +26,7 @@ An iterative algorithm due to Kent and Tyler (1988) is used.  Initial values of 
 }
 
 \references{
-Kent, J. and Tyler, D. (1988).  Maximum likelihood estimation for the wrapped Cauchy distribution.  Journal of Applied Statistics, 15, 2, 247–254.
+Kent, J. and Tyler, D. (1988).  Maximum likelihood estimation for the wrapped Cauchy distribution.  Journal of Applied Statistics, 15, 2, 247-254.
 
 Jammalamadaka, S. Rao and SenGupta, A. (2001). Topics in Circular Statistics, Section 4.4, World Scientific Press, Singapore.
 }

@@ -30,7 +30,7 @@ A uniform random variable on (0,1) is generated.  If it is less than p, then a v
 }
 
 \references{
-Best, D. and Fisher, N. (1979).  Efficient simulation of the von Mises distribution.  Applied Statistics, 24, 152–157.
+Best, D. and Fisher, N. (1979).  Efficient simulation of the von Mises distribution.  Applied Statistics, 24, 152-157.
 }
 
 \seealso{

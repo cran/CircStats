@@ -26,7 +26,7 @@ Best and Fisher (1981) show that the MLE of kappa is seriously biased when both 
 \references{
 Jammalamadaka, S. Rao and SenGupta, A. (2001). Topics in Circular Statistics, Section 4.2.1, World Scientific Press, Singapore.
 
-Best, D. and Fisher N. (1981).  The bias of the maximum likelihood estimators of the von Mises-Fisher concentration parameters.  Communications in Statistics - Simulation and Computation, B10(5), 493–502.
+Best, D. and Fisher N. (1981).  The bias of the maximum likelihood estimators of the von Mises-Fisher concentration parameters.  Communications in Statistics - Simulation and Computation, B10(5), 493-502.
 }
 
 \seealso{

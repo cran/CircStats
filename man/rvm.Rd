@@ -25,7 +25,7 @@ Simulation from the von Mises distribution is done via the algorithm due to Best
 }
 
 \references{
-Best, D. and Fisher, N. (1979).  Efficient simulation of the von Mises distribution.  Applied Statistics, 24, 152–157.
+Best, D. and Fisher, N. (1979).  Efficient simulation of the von Mises distribution.  Applied Statistics, 24, 152-157.
 }
 
 \seealso{

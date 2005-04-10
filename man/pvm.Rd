@@ -25,7 +25,7 @@ Cummulative probabilities are computed according to the expression for the von M
 }
 
 \references{
-Gumbel, E., Greenwood, J. and Durand, D. (1953).  The circular normal distribution: theory and tables.  Journal of the American Statistical Association, 48, 131–152.
+Gumbel, E., Greenwood, J. and Durand, D. (1953).  The circular normal distribution: theory and tables.  Journal of the American Statistical Association, 48, 131-152.
 
 Jammalamadaka, S. Rao and SenGupta, A. (2001). Topics in Circular Statistics, Section 2.2.4, World Scientific Press, Singapore.
 }

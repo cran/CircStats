@@ -37,7 +37,7 @@ A trigonometric polynomial of alpha is fit against the cosine and sine of theta.
 \references{
 Jammalamadaka, S. Rao and SenGupta, A. (2001). Topics in Circular Statistics, Section 8.3, World Scientific Press, Singapore.
 
-Sarma, Y. and Jammalamadaka, S. (1993).  Circular Regression.  Statistical Science and Data Analysis, 109–128.  Proceeding of the Thrid Pacific Area Statistical Conference.  VSP: Utrecht, Netherlands.
+Sarma, Y. and Jammalamadaka, S. (1993).  Circular Regression.  Statistical Science and Data Analysis, 109-128.  Proceeding of the Thrid Pacific Area Statistical Conference.  VSP: Utrecht, Netherlands.
 }
 
 \examples{
