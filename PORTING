@@ -1,5 +1,7 @@
 Library CircStats
 =================
+Version 0.2-1, 2006/02/13
+
 Version 0.2, 2005/12/06
 Use of atan2 instead of atan where appropriate
 

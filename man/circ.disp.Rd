@@ -14,7 +14,7 @@ circ.disp(x)
 \item{x}{vector of circular data measured in radians.}
 }
 
-\values{
+\value{
 Returns a dataframe with the following components. The sample size, n; the resultant length, r; the mean resultant length, rbar= r/n; and the circular variance, var=(1-r/n).
 }
 

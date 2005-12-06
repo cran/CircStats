@@ -37,7 +37,7 @@ Stephens, M. (1970).  Use of the Kolmogorov-Smirnov, Cramer-von Mises and relate
 \link{circ.range}, \link{rao.spacing}, \link{r.test}, \link{v0.test}, \link{watson}
 }
 
-\exammples{
+\examples{
 # Generate data from the uniform distribution on the circle.
 data <- runif(100, 0, 2*pi)
 kuiper(data)
