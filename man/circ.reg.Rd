@@ -43,7 +43,7 @@ Sarma, Y. and Jammalamadaka, S. (1993).  Circular Regression.  Statistical Scien
 \examples{
 # Generate a data set of dependent circular variables.
 data1 <- runif(50, 0, 2*pi)
-data2 <- atan(0.15*cos(data1) + 0.25*sin(data1), 0.35*sin(data1)) + rvm(50, 0, 5)
+data2 <- atan2(0.15*cos(data1) + 0.25*sin(data1), 0.35*sin(data1)) + rvm(50, 0, 5)
 
 # Fit a circular regression model.
 circ.lm <- circ.reg(data1, data2, order=1)

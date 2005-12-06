@@ -181,11 +181,12 @@ circ.disp <- function(x) {
 }
 
 ###############################################################
+# Modified December, 6, 2005
 
 circ.mean <- function(x) {
 	sinr <- sum(sin(x))
 	cosr <- sum(cos(x))
-	circmean <- atan(sinr, cosr)
+	circmean <- atan2(sinr, cosr)
 	circmean
 }
 
@@ -258,6 +259,7 @@ circ.range <- function(x, test = FALSE) {
 }
 
 ###############################################################
+# Modified December 6, 2005
 
 circ.reg <- function(alpha, theta, order = 1, level = 0.05) {
 	n <- length(alpha)
@@ -273,7 +275,7 @@ circ.reg <- function(alpha, theta, order = 1, level = 0.05) {
 	g1.sq <- t(cos.fit) %*% cos.fit
 	g2.sq <- t(sin.fit) %*% sin.fit
 	rho <- sqrt((g1.sq + g2.sq)/n)
-	theta.fitted <- atan(sin.fit, cos.fit)
+	theta.fitted <- atan2(sin.fit, cos.fit)
 	Y1 <- ctheta
 	Y2 <- stheta
 	ones <- matrix(1, n, 1)
@@ -313,13 +315,14 @@ circ.reg <- function(alpha, theta, order = 1, level = 0.05) {
 }
 
 ###############################################################
+# Modified December 6, 2005
 
 circ.summary <- function(x) {
 	n <- length(x)
 	sinr <- sum(sin(x))
 	cosr <- sum(cos(x))
 	rho <- sqrt(sinr^2 + cosr^2)/n
-	mean.dir <- atan(sinr, cosr)
+	mean.dir <- atan2(sinr, cosr)
 	result <- data.frame(n, mean.dir, rho)
 	result
 }
@@ -884,15 +887,16 @@ rwrpstab <- function(n, index, skewness, scale=1) {
 }
 
 ###############################################################
+# Modified December 6, 2005
 
 trig.moment <- function(x, p = 1, center = FALSE) {
 	n <- length(x)
 	sinr <- sum(sin(x))
 	cosr <- sum(cos(x))
-	circmean <- atan(sinr, cosr)
+	circmean <- atan2(sinr, cosr)
 	sin.p <- sum(sin(p * (x - circmean * center)))/n
 	cos.p <- sum(cos(p * (x - circmean * center)))/n
-	mu.p <- atan(sin.p, cos.p)
+	mu.p <- atan2(sin.p, cos.p)
 	rho.p <- sqrt(sin.p^2 + cos.p^2)
 	data.frame(mu.p, rho.p, cos.p, sin.p)
 }
@@ -1139,6 +1143,7 @@ watson.two <- function(x, y, alpha = 0, plot = FALSE) {
 }
 
 ###############################################################
+# Modified December 6, 2005
 
 wrpcauchy.ml <- function(x, mu0, rho0, acc = 1e-015) {
 	mu1.old <- (2 * rho0 * cos(mu0))/(1 + rho0^2)
@@ -1161,7 +1166,7 @@ wrpcauchy.ml <- function(x, mu0, rho0, acc = 1e-015) {
 	}
 	mu.const <- sqrt(mu1.new^2 + mu2.new^2)
 	rho <- (1 - sqrt(1 - mu.const^2))/mu.const
-	mu <- atan(mu2.new, mu1.new) %% (2 * pi)
+	mu <- atan2(mu2.new, mu1.new) %% (2 * pi)
 	data.frame(mu, rho)
 }
 

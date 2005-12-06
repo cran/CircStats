@@ -1,5 +1,9 @@
 Library CircStats
 =================
+Version 0.2, 2005/12/06
+Use of atan2 instead of atan where appropriate
+
+Version 0.1-9, 2005/04/10
 
 Version 0.1-8, 2003/11/18
 Fixed a problem in rose.diag
