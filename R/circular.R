@@ -630,7 +630,7 @@ rao.homogeneity <- function(x, alpha = 0) {
 
 rao.spacing <- function(x, alpha = 0, rad = TRUE) {
 
-        data(rao.table)
+        data(rao.table, package='CircStats')
 	if(rad == TRUE)
 		x <- deg(x)
 	x <- sort(x %% 360)
