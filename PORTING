@@ -1,5 +1,8 @@
 Library CircStats
 =================
+Version 0.2-3, 2007/08/15
+rao.spacing loads locally the dataset rao.table
+
 Version 0.2-2, 2007/08/13
 Add depends in the DESCRIPTION file
 
