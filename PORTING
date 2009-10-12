@@ -1,5 +1,9 @@
 Library CircStats
 =================
+Version 0.2-4, 2009/10/12
+Fixed the warnings with R version 2.10.0
+Fixed a bug in pp.plot function
+
 Version 0.2-3, 2007/08/15
 rao.spacing loads locally the dataset rao.table
 

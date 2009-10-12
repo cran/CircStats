@@ -488,19 +488,19 @@ plot.edf <- function(x, ...) {
 }
 
 ###############################################################
+## Modified October 12, 2009
 
 pp.plot <- function(x, ref.line = TRUE) {
 	n <- length(x)
 	x <- sort(x %% (2 * pi))
-	x <- c(1:n)/(n + 1)
+	z <- c(1:n)/(n + 1)
 	mu <- circ.mean(x) %% (2 * pi)
 	kappa <- est.kappa(x)
 	y <- c(1:n)
 	for(i in 1:n) {
 		y[i] <- pvm(x[i], mu, kappa)
 	}
-	plot(x, y, xlab = "von Mises Distribution", ylab = 
-		"Empirical Distribution")
+	plot(z, y, xlab = "von Mises Distribution", ylab = "Empirical Distribution")
 	if(ref.line)
 		abline(0, 1)
 	data.frame(mu, kappa)
