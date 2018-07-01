@@ -9,3 +9,10 @@ import(
   MASS,
   boot
 )
+
+importFrom("graphics", "abline", "lines", "par", "plot", "points",
+             "text")
+importFrom("stats", "dnorm", "lm", "pchisq", "pnorm", "qchisq",
+             "quantile", "rcauchy", "rexp", "rnorm", "runif", "var")
+importFrom("utils", "data")
+  

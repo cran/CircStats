@@ -1,3 +1,27 @@
+    Circular Statistics, from "Topics in Circular Statistics" (2001) S. Rao Jammalamadaka and A. SenGupta, World Scientific.
+
+    Copyright (C) 2001 S version Ulric Lund
+    Copyright (C) 2002 R port Claudio Agostinelli
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; version 2 of the License.
+
+   This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+
+------------------------------------------------------------------------------
+  
+All the function (except rstable) are originally written for S by Ulric Lund <ulund@calpoly.edu>. 
+rstable function is based on C functions gsl_ran_levy and gsl_ran_levy_skew from GNU Scientific Library copyrighted under GNU general license by James Theiler, Brian Gough and Keith Briggs.
+
+------------------------------------------------------------------------------  
 
 This statement is in regards to the CircStats library for S-Plus, which 
 is a collection of S-Plus functions for the analysis of circular data, 

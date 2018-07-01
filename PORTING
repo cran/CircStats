@@ -1,7 +1,12 @@
 Library CircStats
 =================
+Version 0.2-5, 2018/06/30
+Fixed warnings with R version 3.5.0
+Function plot.edf is renamed plotedf
+
+    
 Version 0.2-4, 2009/10/12
-Fixed the warnings with R version 2.10.0
+Fixed warnings with R version 2.10.0
 Fixed a bug in pp.plot function
 
 Version 0.2-3, 2007/08/15
@@ -40,10 +45,3 @@ Changes to the original package:
 5. Change in vm.bootstrap.ci for using bootstrap function of the package bootstrap
 6. Build a function rstable to generate random variables from stable distribution
 7 Change in rwrpstab function for using rstable
-             
-Claudio Agostinelli
-Department of Statistics
-University of Venice
-Italy
-http://www.dst.unive.it/~claudio
-<claudio@unive.it>

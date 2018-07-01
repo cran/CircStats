@@ -10,8 +10,9 @@
 ###############################################################
 
 ###############################################################
-#                                                             #
-#       R port: Claudio Agostinelli  <claudio@unive.it>       #
+#                                                             # 
+#       R port: Claudio Agostinelli                           #
+#       E-mail: claudio.agostinelli@unitn.it                  #
 #                                                             #
 #       Date: April, 17, 2003                                 #
 #       Version: 0.1-7                                        #
@@ -21,7 +22,7 @@
 ###############################################################
 ## Modified December 23, 2002
 ## Modified January 14, 2003
-
+  
 A1 <- function(kappa) {
     result <- besselI(kappa, nu=1, expon.scaled = TRUE)/besselI(kappa, nu=0, expon.scaled = TRUE)
 	return(result)
@@ -194,10 +195,10 @@ circ.mean <- function(x) {
 ## Modified March 5, 2002
 ## Modified December 2, 2002
 ## Modified November 18, 2003
+## Modified June 30, 2018
 
 circ.plot <- function(x, main = "", pch = 16, stack = FALSE, bins = 0, cex = 1, dotsep = 40, shrink = 1) {
- x <- x %% (2 * pi)
- if (require(MASS)) {
+  x <- x %% (2 * pi)
 	eqscplot(x=cos(seq(0, 2 * pi, length = 1000)), y=sin(seq(0, 2 * pi, length = 1000)), axes = FALSE, xlab = "", ylab = "", main = main, type = "l", xlim = shrink * c(-1, 1), ylim = shrink * c(-1, 1), ratio=1, tol=0.04)
 	lines(c(0, 0), c(0.9, 1))
 	text(0.005, 0.85, "90", cex = 1.5)
@@ -211,9 +212,9 @@ circ.plot <- function(x, main = "", pch = 16, stack = FALSE, bins = 0, cex = 1, 
 	n <- length(x)
 	z <- cos(x)
 	y <- sin(x)
-	if(stack == FALSE)
+	if(stack == FALSE) {
 		points(z, y, cex = cex, pch = pch)
-	else {
+	} else {
 		bins.count <- c(1:bins)
 		arc <- (2 * pi)/bins
 		for(i in 1:bins) {
@@ -232,12 +233,6 @@ circ.plot <- function(x, main = "", pch = 16, stack = FALSE, bins = 0, cex = 1, 
 			}
 		}
 	}
-
- } else {
-    stop("To use this function you have to install the package MASS (VR)\n")
- }
-
-
 }
 
 ###############################################################
@@ -479,8 +474,9 @@ kuiper <- function(x, alpha = 0) {
 }
 
 ###############################################################
+## Modified 30 June 2018
 
-plot.edf <- function(x, ...) {
+plotedf <- function(x, ...) {
 	x <- x %% (2 * pi)
 	x <- sort(x)
 	n <- length(x)
@@ -738,11 +734,11 @@ rmixedvm <- function(n, mu1, mu2, kappa1, kappa2, p) {
 ###############################################################
 ## Modified March 5, 2002
 ## Modified December, 23, 2003
-
+## Modified June, 30, 2018
+  
 rose.diag <- function(x, bins, main = "", prop = 1, pts = FALSE, cex = 1, pch = 16, dotsep = 40, shrink = 1) {
 	x <- x %% (2 * pi)
-    if (require(MASS)) {
-	   eqscplot(cos(seq(0, 2 * pi, length = 1000)), sin(seq(0, 2 * pi, length = 1000)), axes = FALSE, xlab = "", ylab = "", main = main, type = "l", xlim = shrink * c(-1, 1), ylim = shrink* c(-1, 1))
+	eqscplot(cos(seq(0, 2 * pi, length = 1000)), sin(seq(0, 2 * pi, length = 1000)), axes = FALSE, xlab = "", ylab = "", main = main, type = "l", xlim = shrink * c(-1, 1), ylim = shrink* c(-1, 1))
 	lines(c(0, 0), c(0.9, 1))
 	text(0.005, 0.85, "90", cex = 1.5)
 	lines(c(0, 0), c(-0.9, -1))
@@ -778,10 +774,6 @@ rose.diag <- function(x, bins, main = "", prop = 1, pts = FALSE, cex = 1, pch = 
 			}
 		}
 	}
-
- } else {
-    stop("To use this function you have to install the package MASS (VR)\n")
- }
 }
 
 ###############################################################
@@ -920,13 +912,12 @@ v0.test <- function(x, mu0 = 0, degree = FALSE) {
 
 ###############################################################
 # Modified April 17, 2003
-
+# Modified June 30, 2018
+  
 vm.bootstrap.ci <- function(x, bias = FALSE, alpha = 0.05, reps = 1000, print = TRUE) {
-
-    if (require(boot)) {
-        circ.mean.local <- function(x, i) {
-            circ.mean(x[i])
-        }
+  circ.mean.local <- function(x, i) {
+    circ.mean(x[i])
+  }
 	mean.bs <- boot(data = x, statistic = circ.mean.local, R = reps, stype="i")
 #	mean.bs <- bootstrap(x=x, theta=circ.mean, nboot = reps)
 	mean.reps <- mean.bs$t
@@ -957,11 +948,6 @@ vm.bootstrap.ci <- function(x, bias = FALSE, alpha = 0.05, reps = 1000, print = 
 	cat("Mean Direction:           ", "Low =", round(mean.ci[1], 2), "  High =", round(mean.ci[2], 2), "\n")
 	cat("Concentration Parameter:  ", "Low =", round(kappa.ci[1], 2), "  High =", round(kappa.ci[2], 2), "\n")
 	result
-
-        } else {
-             stop("To use this function you have to install the package bootstrap \n")
-        }
-
 }
 
 ###############################################################
@@ -1059,8 +1045,7 @@ watson <- function(x, alpha = 0, dist = "uniform") {
 			else if(alpha == 0.01)
 				col <- 4
 			else {
-				cat("Invalid input for alpha", "\n", "\n")
-				break
+				stop("Invalid input for alpha", "\n", "\n")
 			}
 			Critical <- u2.crits[row, col]
 			if(Value > Critical)
@@ -1096,9 +1081,9 @@ watson.two <- function(x, y, alpha = 0, plot = FALSE) {
 	if(plot == TRUE) {
 		x <- sort(x %% (2 * pi))
 		y <- sort(y %% (2 * pi))
-		plot.edf(x, main = "Comparison of Empirical CDFs", xlab= "", ylab = "")
+		plotedf(x, main = "Comparison of Empirical CDFs", xlab= "", ylab = "")
 		par(new = TRUE)
-		plot.edf(y, xlab = "", ylab = "", axes = FALSE, lty = 2)
+		plotedf(y, xlab = "", ylab = "", axes = FALSE, lty = 2)
 	}
 	cat("\n", "      Watson's Two-Sample Test of Homogeneity", "\n", "\n")
 	x <- cbind(sort(x %% (2 * pi)), rep(1, n1))
